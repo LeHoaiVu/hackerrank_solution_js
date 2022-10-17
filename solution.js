@@ -119,3 +119,19 @@ function timeConversion(s) {
     }
     return s.slice(0, s.length - 2);
 }
+
+// compress character 'aaaabbcccddd' --> '4a2b3c3d'
+const countStr = (str) => {
+    let newstr = "";
+    let count = 1;
+
+    for (let i = 0; i <= str.length; i++) {
+        if (str.charAt(i) === str.charAt(i + 1)) {
+            count += 1;
+        } else {
+            newstr += `${count}${str.charAt(i)}`;
+            count = 1;
+        }
+    }
+    console.log(newstr);
+};
