@@ -1,4 +1,13 @@
-/** Staircase */
+/** Staircase 
+ * 
+staircase(6)
+      #
+     ##
+    ###
+   ####
+  #####
+ ######
+*/
 function staircase(n) {
     for (let i = 0; i < n; i++) {
         let stairCase = "";
@@ -6,6 +15,31 @@ function staircase(n) {
             j < n - 1 - i ? (stairCase += " ") : (stairCase += "#");
         }
         console.log(stairCase);
+    }
+}
+
+/**
+ * Staircase
+staircase(6)
+  #     
+  ##    
+  ###   
+  ####  
+  ##### 
+  ######
+ */
+function staircase(n) {
+    for (let i = 0; i < n; i++) {
+        let step = " ";
+
+        for (let j = 0; j < n; j++) {
+            if (j <= i) {
+                step += "#";
+            } else {
+                step += " ";
+            }
+        }
+        console.log(step);
     }
 }
 
@@ -135,3 +169,107 @@ const countStr = (str) => {
     }
     console.log(newstr);
 };
+
+let op = vu.replace(/(.)\1+/g, function (match, first) {
+    return match.length + first;
+});
+
+/**Grading Students */
+function gradingStudents(grades) {
+    // Write your code here
+    var multipleToRoundTo = 5;
+    var numberToRoundAt = 2;
+    for (var i = 0; i < grades.length; i++) {
+        if (
+            grades[i] >= 38 &&
+            grades[i] % multipleToRoundTo > numberToRoundAt
+        ) {
+            grades[i] =
+                grades[i] +
+                (multipleToRoundTo - (grades[i] % multipleToRoundTo));
+        }
+    }
+    return grades;
+}
+
+/**Rectangle check remain 1 point x, y */
+function solution(v) {
+    let kcy = 0,
+        x = 0,
+        y = 0;
+    // x = v[0][0] + v[1][0] - v[2][0]
+    // y = v[0][1] + v[1][1] - v[2][1]
+
+    if (v[0][0] === v[1][0]) {
+        kcy = Math.abs(v[0][1]) + Math.abs(v[1][1]);
+        x = v[2][0];
+        y = kcy - v[2][1];
+    }
+
+    if (v[1][0] === v[2][0]) {
+        kcy = Math.abs(v[1][1]) + Math.abs(v[2][1]);
+        x = v[0][0];
+        y = kcy - v[0][1];
+    }
+
+    if (v[0][0] === v[2][0]) {
+        kcy = Math.abs(v[0][1]) + Math.abs(v[2][1]);
+        x = v[1][0];
+        y = kcy - v[1][1];
+    }
+
+    return [x, y];
+}
+
+/**
+    add(1)(2)(3)(); //6
+    add(1)(1)(1)(1)(1)(1)(); //6 
+*/
+function add(x) {
+    return function (y) {
+        if (typeof y !== "undefined") {
+            x = x + y;
+            return arguments.callee;
+        } else {
+            return x;
+        }
+    };
+}
+
+/**
+  add(1)(2)(); //3
+ */
+function add(x) {
+    return function (y) {
+        return x + y;
+    };
+}
+
+/**
+ * from "plant/tree/apple/vu/vudt"
+ * to {
+ *     plant: {
+ *          tree: {
+ *              apple: {
+ *                  vu: {
+ *                      vudt: true
+ *                  }
+ *              }
+ *          }
+ *     }
+ *     }
+ */
+const plant_str = "plant/tree/apple/vu/vudt";
+
+function setValueByPath(obj, path, value) {
+    var ref = obj;
+
+    path.split("/").forEach(function (key, index, arr) {
+        ref = ref[key] = index === arr.length - 1 ? value : {};
+    });
+
+    return obj;
+}
+var object = {};
+setValueByPath(object, plant_str, true);
+console.log(object);
