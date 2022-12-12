@@ -273,3 +273,162 @@ function setValueByPath(obj, path, value) {
 var object = {};
 setValueByPath(object, plant_str, true);
 console.log(object);
+
+//Giai thua
+const factorial = (num) => {
+    if (num === 0) return 1;
+    return num * factorial(num - 1);
+};
+
+//reverse string
+const reverseString = (str) => {
+    return str.split("").reverse().join("");
+};
+
+const reverseStringSecMethod = (str) => {
+    let newStr = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        newStr += str[i];
+    }
+    return newStr;
+};
+
+//Tim chu co nhieu ky tu nhat trong cau
+//Find the Longest Word in a String
+function findLongestWordLength(str) {
+    let splitedArr = str.split(" ");
+    let maxLength = 0;
+    for (let i = 0; i < splitedArr.length; i++) {
+        if (splitedArr[i].length > maxLength) {
+            maxLength = splitedArr[i].length;
+        }
+    }
+    return maxLength;
+}
+
+//Tim tung phan tu lon nhat trong mang 2 chieu
+//Return Largest Numbers in Arrays
+function largestOfFour(arr) {
+    let largestArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        let maxEl = Math.max(...arr[i]);
+        largestArr.push(maxEl);
+    }
+    return largestArr;
+}
+
+largestOfFour([
+    [4, 5, 1, 3],
+    [13, 27, 18, 26],
+    [32, 35, 37, 39],
+    [1000, 1001, 857, 1],
+]);
+
+//Confirm the Ending
+//Check if a string (first argument, str) ends with the given target string (second argument, target).
+//So sanh target co giong phan cuoi cua chuoi hay khong
+function confirmEnding(str, target) {
+    if (str.slice(-target.length) !== target) return false;
+    return true;
+}
+
+confirmEnding("Bastian", "n");
+
+//Repeat a string with given number of times
+function repeatStringNumTimes(str, num) {
+    let newStr = "";
+    for (let i = 0; i < num; i++) {
+        newStr += str;
+    }
+    return newStr;
+}
+
+console.log(repeatStringNumTimes("abc", 3));
+
+//Truncate a String
+//truncateString("A-tisket a-tasket A green and yellow basket", 8) should return the string A-tisket....
+function truncateString(str, num) {
+    if (num >= str.length) return str;
+    return str.substring(0, num) + "...";
+}
+
+//Finders Keepers
+//findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; }) should return 8.
+function findElement(arr, func) {
+    if (arr.every(func)) return undefined;
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            return arr[i];
+        }
+    }
+}
+
+//Title Case a Sentence
+//titleCase("I'm a little tea pot") should return the string I'm A Little Tea Pot.
+function titleCase(str) {
+    let strArrLower = str.toLowerCase().split(" ");
+    for (let i = 0; i < strArrLower.length; i++) {
+        strArrLower[i] =
+            strArrLower[i][0].toUpperCase() +
+            strArrLower[i].substring(1, strArrLower[i].length);
+    }
+    return strArrLower.join(" ");
+}
+
+titleCase("I'm a little tea pot");
+
+//Slice and Splice
+//frankenSplice([1, 2, 3], [4, 5], 1) should return [4, 1, 2, 3, 5].
+function frankenSplice(arr1, arr2, n) {
+    let arrResult = [...arr2];
+    arrResult.splice(n, 0, arr1);
+    while (arrResult.some((item) => Array.isArray(item))) {
+        arrResult = [].concat(...arrResult);
+    }
+
+    //   arr2.flat(Infinity)
+    return arrResult;
+}
+
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+//Falsy Bouncer
+//bouncer([7, "ate", "", false, 9]) should return [7, "ate", 9].
+function bouncer(arr) {
+    // let arrResult = [...arr].filter(el => !!el)
+    let arrResult = [...arr].filter(Boolean);
+    return arrResult;
+}
+
+bouncer([7, "ate", "", false, 9]);
+
+//Where do I Belong
+//For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+//getIndexToIns([10, 20, 30, 40, 50], 35) should return 3.
+function getIndexToIns(arr, num) {
+    let result = 0;
+    let arrTemp = [...arr];
+    arrTemp.sort((a, b) => a - b);
+    arrTemp.forEach((el) => {
+        if (el < num) result++;
+    });
+    return result;
+}
+
+getIndexToIns([40, 60], 50);
+
+//Mutations
+//Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+//mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]) should return true.
+//mutation(["ate", "date"]) should return false.
+function mutation(arr) {
+    let lowerCaseArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        lowerCaseArr.push(arr[i].toLowerCase().split(""));
+    }
+    for (let j = 1; j < arr.length; j++) {
+        return lowerCaseArr[j].every((c) => lowerCaseArr[0].includes(c));
+    }
+}
+
+mutation(["hello", "hey"]);
